@@ -22,6 +22,7 @@
   - Options (Default: O)
   - Halt TTS (Default: Space)
   - Debug TTS (Default: J)
+- Automatic update notifications
 
 # Screenshots
 
