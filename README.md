@@ -15,6 +15,7 @@
 - Custom images/gifs
 - Custom sounds
 - Subscription alerts
+  - Emote support on subscription messages
 - Bit donation alerts
 - [Monetary donation alerts](#monetary-donation-alerts)
 
