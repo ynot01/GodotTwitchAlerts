@@ -79,7 +79,7 @@ Head to [releases](https://github.com/ynot01/GodotTwitchAlerts/releases/) and do
   
 </details>
 
-## OBS Integration
+## [OBS](https://github.com/obsproject/obs-studio) Integration
 
 <details>
 <summary>Add a Game Capture source</summary>
