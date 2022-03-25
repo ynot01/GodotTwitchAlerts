@@ -133,6 +133,10 @@ Head to [releases](https://github.com/ynot01/GodotTwitchAlerts/releases/) and do
 
 Compiled with [Godot Engine](https://github.com/godotengine/godot) v3.4.1.stable.[goost](https://github.com/goostengine/goost).official
 
+You will need to [download and install the goost extension of Godot as well as the export templates](https://goostengine.github.io/download.html)
+
+You should be able to export to **any platform** and still have this work
+
 ## Monetary donation alerts
 
 Implementing your own $$$ donation alert should be very simple on the engine's side. All that is needed is to insert an array into the `Main` node's `pending_alerts` table with the following format:
