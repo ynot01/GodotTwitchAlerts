@@ -1,0 +1,43 @@
+[gd_resource type="Theme" load_steps=10 format=2]
+
+[ext_resource path="res://ConsolaDefault.tres" type="DynamicFont" id=1]
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.745098, 0, 0.470588, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.254902, 0.0784314, 0.372549, 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0, 0.0784314, 0.647059, 1 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0, 0.784314, 0.686275, 1 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.745098, 0.980392, 0.882353, 1 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 1, 1, 1, 0.25 )
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.6, 0.6, 0.6, 0.25 )
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0.6, 0.6, 0.6, 0.25 )
+
+[resource]
+default_font = ExtResource( 1 )
+/colors/Ice = Color( 0.941176, 0.941176, 1, 1 )
+Button/colors/font_color = Color( 0.941176, 0.941176, 1, 1 )
+Button/styles/hover = SubResource( 4 )
+Button/styles/normal = SubResource( 3 )
+Button/styles/pressed = SubResource( 5 )
+Label/colors/font_color = Color( 0.941176, 0.941176, 1, 1 )
+LineEdit/colors/font_color = Color( 0.941176, 0.941176, 1, 1 )
+LineEdit/colors/font_color_selected = Color( 0.254902, 0.0784314, 0.372549, 1 )
+LineEdit/styles/focus = SubResource( 6 )
+LineEdit/styles/normal = SubResource( 7 )
+VScrollBar/styles/grabber = SubResource( 8 )
+VScrollBar/styles/grabber_highlight = SubResource( 9 )
+VScrollBar/styles/grabber_pressed = SubResource( 10 )

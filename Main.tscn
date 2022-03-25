@@ -1,0 +1,665 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://Main.gd" type="Script" id=1]
+[ext_resource path="res://addons/godot-tts/TTS.gd" type="Script" id=2]
+[ext_resource path="res://MainTheme.tres" type="Theme" id=3]
+[ext_resource path="res://SoftLarge.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Remap.gd" type="Script" id=5]
+[ext_resource path="res://Close.gd" type="Script" id=6]
+[ext_resource path="res://WebSocket.gd" type="Script" id=7]
+[ext_resource path="res://HTTP.gd" type="Script" id=8]
+[ext_resource path="res://Get OAuth Token.gd" type="Script" id=9]
+[ext_resource path="res://oauth_token.gd" type="Script" id=10]
+[ext_resource path="res://Hide.gd" type="Script" id=11]
+[ext_resource path="res://ConsolaTiny.tres" type="DynamicFont" id=12]
+[ext_resource path="res://Expand.gd" type="Script" id=13]
+[ext_resource path="res://Time.gd" type="Script" id=14]
+[ext_resource path="res://Expand2.gd" type="Script" id=15]
+[ext_resource path="res://username.gd" type="Script" id=16]
+[ext_resource path="res://BG.gd" type="Script" id=17]
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.745098, 0, 0.470588, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.254902, 0.0784314, 0.372549, 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0, 0.0784314, 0.647059, 1 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0, 0.784314, 0.686275, 1 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.745098, 0.980392, 0.882353, 1 )
+
+[sub_resource type="Theme" id=8]
+default_font = ExtResource( 12 )
+/colors/Ice = Color( 0.941176, 0.941176, 1, 1 )
+Button/colors/font_color = Color( 0.941176, 0.941176, 1, 1 )
+Button/styles/hover = SubResource( 4 )
+Button/styles/normal = SubResource( 3 )
+Button/styles/pressed = SubResource( 5 )
+Label/colors/font_color = Color( 0.941176, 0.941176, 1, 1 )
+LineEdit/colors/font_color = Color( 0.941176, 0.941176, 1, 1 )
+LineEdit/styles/focus = SubResource( 6 )
+LineEdit/styles/normal = SubResource( 7 )
+
+[node name="Main" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 3 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="TTS" type="Node" parent="."]
+pause_mode = 2
+script = ExtResource( 2 )
+
+[node name="WebSocket" type="Node" parent="."]
+script = ExtResource( 7 )
+
+[node name="Label" type="Label" parent="WebSocket"]
+visible = false
+modulate = Color( 1, 1, 1, 0.254902 )
+margin_left = 192.0
+margin_top = 240.0
+margin_right = 832.0
+margin_bottom = 286.0
+custom_colors/font_color = Color( 0.941176, 0.941176, 1, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "NOT CONNECTED TO TWITCH"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ValidateOAuth" type="HTTPRequest" parent="WebSocket"]
+
+[node name="FetchChannelEmotes" type="HTTPRequest" parent="WebSocket"]
+
+[node name="DLChannelEmote" type="HTTPRequest" parent="WebSocket"]
+
+[node name="FetchGlobalEmotes" type="HTTPRequest" parent="WebSocket"]
+
+[node name="DLGlobalEmote" type="HTTPRequest" parent="WebSocket"]
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+volume_db = -13.109
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Debug" type="Label" parent="."]
+visible = false
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 204.0
+margin_bottom = 330.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Welcome" type="Control" parent="."]
+mouse_filter = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="BG" type="ColorRect" parent="Welcome"]
+margin_right = 1024.0
+margin_bottom = 600.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Welcome"]
+margin_top = 192.0
+margin_right = 1024.0
+margin_bottom = 792.0
+custom_colors/font_color = Color( 0.568627, 0.27451, 1, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "Welcome to Godot Twitch Alerts
+Press O to configure options
+Press Space to dismiss"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Alert" type="Control" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Author" type="RichTextLabel" parent="Alert"]
+margin_left = 3.0
+margin_top = 264.0
+margin_right = 1027.0
+margin_bottom = 320.0
+custom_fonts/normal_font = ExtResource( 4 )
+bbcode_enabled = true
+scroll_active = false
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Message" type="RichTextLabel" parent="Alert"]
+margin_top = 322.0
+margin_right = 1024.0
+margin_bottom = 600.0
+bbcode_enabled = true
+bbcode_text = "[center]Message[/center]"
+text = "Message"
+scroll_active = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Alert"]
+position = Vector2( 512, 136 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Options" type="Control" parent="."]
+visible = false
+margin_right = 1024.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="BG" type="ColorRect" parent="Options"]
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0, 0, 0, 1 )
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Binds" type="Label" parent="Options"]
+margin_left = 920.0
+margin_top = 64.0
+margin_right = 985.0
+margin_bottom = 89.0
+text = "Binds"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Rebinds" type="Control" parent="Options"]
+margin_left = 8.0
+margin_right = 8.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="options" type="Button" parent="Options/Rebinds"]
+margin_left = 885.0
+margin_top = 100.0
+margin_right = 975.0
+margin_bottom = 131.0
+toggle_mode = true
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+action = "options"
+
+[node name="Options" type="Label" parent="Options/Rebinds"]
+margin_left = 632.0
+margin_top = 100.0
+margin_right = 865.0
+margin_bottom = 131.0
+text = "Open Options"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="stop_tts" type="Button" parent="Options/Rebinds"]
+margin_left = 885.0
+margin_top = 150.0
+margin_right = 975.0
+margin_bottom = 181.0
+toggle_mode = true
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+action = "stop_tts"
+
+[node name="Stop TTS" type="Label" parent="Options/Rebinds"]
+margin_left = 632.0
+margin_top = 150.0
+margin_right = 865.0
+margin_bottom = 181.0
+text = "Dismiss/Stop TTS"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="debug_tts" type="Button" parent="Options/Rebinds"]
+margin_left = 885.0
+margin_top = 200.0
+margin_right = 975.0
+margin_bottom = 231.0
+toggle_mode = true
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+action = "debug_tts"
+
+[node name="Debug TTS" type="Label" parent="Options/Rebinds"]
+margin_left = 632.0
+margin_top = 200.0
+margin_right = 865.0
+margin_bottom = 231.0
+text = "Debug TTS"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Values" type="Control" parent="Options"]
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="MinimumDono" type="Label" parent="Options/Values"]
+margin_left = 32.0
+margin_top = 100.0
+margin_right = 265.0
+margin_bottom = 131.0
+hint_tooltip = "Any donation below this amount will not trigger TTS"
+mouse_filter = 1
+mouse_default_cursor_shape = 16
+text = "Minimum $ for TTS"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="minimum_tts_usd" type="LineEdit" parent="Options/Values"]
+margin_left = 285.0
+margin_top = 100.0
+margin_right = 384.0
+margin_bottom = 131.0
+text = "5.00"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="MinimumBit" type="Label" parent="Options/Values"]
+margin_top = 150.0
+margin_right = 265.0
+margin_bottom = 181.0
+hint_tooltip = "Any bit donation below this amount will not trigger TTS"
+mouse_filter = 1
+mouse_default_cursor_shape = 16
+text = "Minimum bits for TTS"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="minimum_tts_bits" type="LineEdit" parent="Options/Values"]
+margin_left = 285.0
+margin_top = 150.0
+margin_right = 441.0
+margin_bottom = 181.0
+text = "100"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="MaxTTS" type="Label" parent="Options/Values"]
+margin_left = 32.0
+margin_top = 200.0
+margin_right = 265.0
+margin_bottom = 231.0
+hint_tooltip = "Any characters past this limit will get cut off on TTS"
+mouse_filter = 1
+mouse_default_cursor_shape = 16
+text = "Max TTS Length"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="maximum_tts_length" type="LineEdit" parent="Options/Values"]
+margin_left = 285.0
+margin_top = 200.0
+margin_right = 441.0
+margin_bottom = 231.0
+text = "175"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="UserInfo" type="Control" parent="Options"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="OAuthLabel" type="Label" parent="Options/UserInfo"]
+margin_left = 368.0
+margin_top = 288.0
+margin_right = 654.0
+margin_bottom = 313.0
+text = "OAuth Token (required)"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="oauth_token" type="LineEdit" parent="Options/UserInfo"]
+margin_left = 264.0
+margin_top = 320.0
+margin_right = 672.0
+margin_bottom = 352.0
+align = 1
+max_length = 30
+secret = true
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Get OAuth" type="Button" parent="Options/UserInfo"]
+margin_left = 408.0
+margin_top = 368.0
+margin_right = 616.0
+margin_bottom = 399.0
+text = "Get OAuth Token"
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Hide" type="Button" parent="Options/UserInfo"]
+margin_left = 672.0
+margin_top = 320.0
+margin_right = 760.0
+margin_bottom = 352.0
+toggle_mode = true
+text = "Unhide"
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="UsernameLabel" type="Label" parent="Options/UserInfo"]
+margin_left = 304.0
+margin_top = 416.0
+margin_right = 447.0
+margin_bottom = 441.0
+text = "Username"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="username" type="LineEdit" parent="Options/UserInfo"]
+margin_left = 256.0
+margin_top = 448.0
+margin_right = 496.0
+margin_bottom = 480.0
+align = 1
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="UserIDLabel" type="Label" parent="Options/UserInfo"]
+margin_left = 536.0
+margin_top = 416.0
+margin_right = 757.0
+margin_bottom = 441.0
+text = "UserID"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="userid" type="LineEdit" parent="Options/UserInfo"]
+margin_left = 528.0
+margin_top = 448.0
+margin_right = 768.0
+margin_bottom = 480.0
+align = 1
+max_length = 9
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Get UserID" type="Button" parent="Options/UserInfo"]
+margin_left = 320.0
+margin_top = 496.0
+margin_right = 705.0
+margin_bottom = 527.0
+text = "Generate UserID from username"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="HTTP" type="HTTPRequest" parent="Options/UserInfo/Get UserID"]
+script = ExtResource( 8 )
+
+[node name="StatusHTTP" type="Label" parent="Options/UserInfo"]
+margin_top = 528.0
+margin_right = 1024.0
+margin_bottom = 600.0
+custom_fonts/font = ExtResource( 12 )
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Close" type="Button" parent="Options"]
+margin_left = 422.0
+margin_top = 10.0
+margin_right = 603.0
+margin_bottom = 41.0
+text = "Close Options"
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Console1" type="Control" parent="Options"]
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ConsoleBG" type="ColorRect" parent="Options/Console1"]
+margin_left = 832.0
+margin_top = 368.0
+margin_right = 1024.0
+margin_bottom = 600.0
+mouse_filter = 2
+color = Color( 0.0666667, 0.0666667, 0.0666667, 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Options/Console1"]
+margin_left = 832.0
+margin_top = 368.0
+margin_right = 1024.0
+margin_bottom = 600.0
+follow_focus = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Options/Console1/ScrollContainer"]
+margin_right = 180.0
+rect_min_size = Vector2( 180, 0 )
+theme = SubResource( 8 )
+custom_constants/separation = 0
+alignment = 2
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Expand" type="Button" parent="Options/Console1"]
+margin_left = 832.0
+margin_top = 336.0
+margin_right = 920.0
+margin_bottom = 368.0
+toggle_mode = true
+text = "Expand"
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Console2" type="Control" parent="Options"]
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ConsoleBG" type="ColorRect" parent="Options/Console2"]
+margin_top = 368.0
+margin_right = 192.0
+margin_bottom = 600.0
+mouse_filter = 2
+color = Color( 0.0666667, 0.0666667, 0.0666667, 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Options/Console2"]
+margin_top = 368.0
+margin_right = 192.0
+margin_bottom = 600.0
+follow_focus = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Options/Console2/ScrollContainer"]
+margin_right = 180.0
+rect_min_size = Vector2( 180, 0 )
+theme = SubResource( 8 )
+custom_constants/separation = 0
+alignment = 2
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Expand2" type="Button" parent="Options/Console2"]
+margin_left = 104.0
+margin_top = 336.0
+margin_right = 192.0
+margin_bottom = 368.0
+toggle_mode = true
+text = "Expand"
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Time" type="Label" parent="Options"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 42.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 12 )
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="FetchUpdate" type="HTTPRequest" parent="."]
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+margin_left = 320.0
+margin_top = 192.0
+margin_right = 704.0
+margin_bottom = 384.0
+window_title = "New Update Available"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="utterance_begin" from="TTS" to="." method="_on_TTS_utterance_begin"]
+[connection signal="utterance_end" from="TTS" to="." method="_on_TTS_utterance_end"]
+[connection signal="utterance_stop" from="TTS" to="." method="_on_TTS_utterance_stop"]
+[connection signal="request_completed" from="WebSocket/ValidateOAuth" to="WebSocket" method="_on_ValidateOAuth_request_completed"]
+[connection signal="request_completed" from="WebSocket/FetchChannelEmotes" to="WebSocket" method="_on_FetchChannelEmotes_request_completed"]
+[connection signal="request_completed" from="WebSocket/DLChannelEmote" to="WebSocket" method="_on_DLChannelEmote_request_completed"]
+[connection signal="request_completed" from="WebSocket/FetchGlobalEmotes" to="WebSocket" method="_on_FetchGlobalEmotes_request_completed"]
+[connection signal="request_completed" from="WebSocket/DLGlobalEmote" to="WebSocket" method="_on_DLGlobalEmote_request_completed"]
+[connection signal="gui_input" from="Options/BG" to="Options/BG" method="_on_BG_gui_input"]
+[connection signal="text_changed" from="Options/Values/minimum_tts_usd" to="." method="_on_minimum_tts_usd_text_changed"]
+[connection signal="text_changed" from="Options/Values/minimum_tts_bits" to="." method="_on_minimum_tts_bits_text_changed"]
+[connection signal="text_changed" from="Options/Values/maximum_tts_length" to="." method="_on_maximum_tts_length_text_changed"]
+[connection signal="text_changed" from="Options/UserInfo/oauth_token" to="Options/UserInfo/oauth_token" method="_on_oauth_token_text_changed"]
+[connection signal="text_changed" from="Options/UserInfo/username" to="Options/UserInfo/username" method="_on_username_text_changed"]
+[connection signal="text_changed" from="Options/UserInfo/userid" to="Options/UserInfo/Get UserID/HTTP" method="_on_userid_text_changed"]
+[connection signal="pressed" from="Options/UserInfo/Get UserID" to="Options/UserInfo/Get UserID/HTTP" method="_on_Get_UserID_pressed"]
+[connection signal="request_completed" from="Options/UserInfo/Get UserID/HTTP" to="Options/UserInfo/Get UserID/HTTP" method="_on_HTTP_request_completed"]
+[connection signal="request_completed" from="FetchUpdate" to="." method="_on_FetchUpdate_request_completed"]
+[connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_ConfirmationDialog_confirmed"]
