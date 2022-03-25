@@ -1,7 +1,7 @@
 # Godot Twitch Alerts
 - [Features](#features)
 - [Screenshots](#screenshots)
-- [Installation](#installation)
+- [Installation & Set-up](#installation--set-up)
   - [OBS Integration](#obs-integration)
   - [Supported file formats](#supported-file-formats)
     - [Images](#images)
@@ -18,6 +18,10 @@
   - Emote support on subscription messages
 - Bit donation alerts
 - [Monetary donation alerts](#monetary-donation-alerts)
+- Key bindings
+  - Options (Default: O)
+  - Halt TTS (Default: Space)
+  - Debug TTS (Default: J)
 
 # Screenshots
 
@@ -49,7 +53,7 @@
   
 </details>
 
-# Installation
+# Installation & Set-up
 Head to [releases](https://github.com/ynot01/GodotTwitchAlerts/releases/) and download the latest version
 
 <details>
